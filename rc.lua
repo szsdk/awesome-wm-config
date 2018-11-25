@@ -271,7 +271,7 @@ end
 
 --{{
 local tools = {
-    terminal = "sakura",
+    terminal = "gnome-terminal",
     system = {
         filemanager = "pcmanfm",
         taskmanager = "lxtask",
@@ -328,8 +328,8 @@ modkey = "Mod4"
 -- Table of layouts to cover with awful.layout.inc, order matters.
 local layouts =
 {
-    awful.layout.suit.floating,
     awful.layout.suit.tile,
+    awful.layout.suit.floating,
     awful.layout.suit.fair,
     awful.layout.suit.max.fullscreen,
     awful.layout.suit.magnifier,
@@ -2808,6 +2808,7 @@ awful.rules.rules = {
             opacity = customization.default.property.default_naughty_opacity,
             screen = awful.screen.preferred,
             placement = awful.placement.no_overlap+awful.placement.no_offscreen,
+            size_hints_honor = false,
         }
     },
 
