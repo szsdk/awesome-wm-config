@@ -328,7 +328,7 @@ modkey = "Mod4"
 -- Table of layouts to cover with awful.layout.inc, order matters.
 local layouts =
 {
-    awful.layout.suit.tile,
+    awful.layout.suit.tile.left,
     awful.layout.suit.floating,
     awful.layout.suit.fair,
     awful.layout.suit.max.fullscreen,
@@ -2934,7 +2934,21 @@ client.connect_signal("manage", function (c, startup)
 
 end)
 
-client.connect_signal("focus", function(c) c.border_color = beautiful.border_focus end)
+client.connect_signal("focus", function(c) 
+    if c.maximized then
+        c.border_width = beautiful.border_width
+    else
+        c.border_width = beautiful.focus_border_width
+        c.border_color = beautiful.border_focus
+    end
+end)
+
+client.connect_signal("request::geometry", function(c) 
+    --local max = c.layout.name == "max"
+    if c.maximized then
+        c.border_width = 0
+    end
+end)
 
 client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
 
