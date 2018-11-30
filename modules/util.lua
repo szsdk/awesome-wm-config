@@ -87,6 +87,7 @@ function util.tag.add(name, props)
     { 
         screen = awful.screen.focused(),
         index = 1,
+        interactive = false,
     }
 
     local t = awful.tag.add(name or " ", props)
@@ -97,7 +98,7 @@ function util.tag.add(name, props)
     end
 
     -- if add the tag interactively
-    if not name then
+    if props.interactive or (not name) then
         -- !!! awful.wdiget.taglist update logic mandates this
         -- !!! lib/awful/widget/taglist.lua: taglist.new > w._do_taglist_update()
         timer.delayed_call(function () util.tag.rename(t, true) end)

@@ -1057,14 +1057,16 @@ customization.func.tag_add_after = function ()
     local focused = awful.screen.focused()
     local scr = focused
     local sel_idx = focused.selected_tag and focused.selected_tag.index or 0
-    local t = util.tag.add(nil, 
+    local idx = sel_idx and sel_idx+1 or 1
+    local t = util.tag.add(tostring(idx), -- set default
     {
         screen = scr,
-        index = sel_idx and sel_idx+1 or 1,
+        index = idx,
         layout = customization.default.property.layout,
         mwfact = customization.default.property.mwfact,
         nmaster = customization.default.property.nmaster,
         ncol = customization.default.property.ncol,
+        interactive = true,
     })
 end
 
@@ -1072,14 +1074,16 @@ customization.func.tag_add_before = function ()
     local focused = awful.screen.focused()
     local scr = focused.index
     local sel_idx = focused.selected_tag and focused.selected_tag.index or 1
-    local t = util.tag.add(nil, 
+    local idx = sel_idx and sel_idx or 1
+    local t = util.tag.add(tostring(idx),  -- set default
     {
         screen = scr,
-        index = sel_idx and sel_idx or 1,
+        index = idx,
         layout = customization.default.property.layout,
         mwfact = customization.default.property.mwfact,
         nmaster = customization.default.property.nmaster,
         ncol = customization.default.property.ncol,
+        interactive = true,
     })
 end
 
