@@ -153,7 +153,8 @@ function util.tag.rename(tag, newp)
         bg_cursor = bg,
         ul_cursor = "single",
         text = text,
-        selectall = true
+        selectall = false
+        --selectall = true
     },
     -- taglist internals -- found with the debug code above
     util.taglist.taglist[scr].children[t.index].widget.children[2].widget,
@@ -168,7 +169,7 @@ function util.tag.rename(tag, newp)
     function ()
         if t.name == before then
             if newp then
-                t:delete()
+                --t:delete()
             end
         else
             t:emit_signal("property::name")
