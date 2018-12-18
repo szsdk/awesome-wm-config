@@ -4,7 +4,9 @@ package.path = config_path .. "/?.lua;" .. package.path
 package.path = config_path .. "/?/init.lua;" .. package.path
 package.path = config_path .. "/modules/?.lua;" .. package.path
 package.path = config_path .. "/modules/?/init.lua;" .. package.path
+package.path = config_path .. "/lain/?.lua;" .. package.path
 
+local lain = require("lain")
 local math = require("math")
 local gears = require("gears")
 awful.client = require("awful.client")
@@ -328,6 +330,7 @@ modkey = "Mod4"
 -- Table of layouts to cover with awful.layout.inc, order matters.
 local layouts =
 {
+    lain.layout.centerwork,
     awful.layout.suit.tile.left,
     awful.layout.suit.floating,
     awful.layout.suit.fair,
