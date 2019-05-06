@@ -1926,7 +1926,7 @@ function(s)
         )
 
     -- Create the wibox
-    customization.widgets.wibox[s] = awful.wibox({ position = "top", screen = s })
+    customization.widgets.wibox[s] = awful.wibox({ position = "bottom", screen = s })
 
     customization.widgets.wibox[s]:setup {
         layout = wibox.layout.align.horizontal,
@@ -2184,12 +2184,13 @@ awful.key({modkey}, "F2", function()
 end),
 
 awful.key({modkey}, "r", function()
-    awful.prompt.run(
-    {prompt = "Run: "},
-    customization.widgets.promptbox[awful.screen.focused()].widget,
-    awful.util.spawn, awful.completion.shell,
-    awful.util.getdir("cache") .. "/history"
-    )
+    awful.util.spawn("rofi -show run")
+    --awful.prompt.run(
+    --{prompt = "Run: "},
+    --customization.widgets.promptbox[awful.screen.focused()].widget,
+    --awful.util.spawn, awful.completion.shell,
+    --awful.util.getdir("cache") .. "/history"
+    --)
 end),
 
 awful.key({modkey}, "F3", function()
