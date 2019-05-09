@@ -1635,7 +1635,7 @@ end
 
 customization.widgets.memusage = wibox.widget.textbox()
 vicious.register(customization.widgets.memusage, vicious.widgets.mem,
-  "<span fgcolor='yellow'>$1% ($2MB/$3MB)</span>", 3)
+  "<span fgcolor='yellow'>$1% ($2G/$3G)</span>", 3)
 do
     local prog=tools.system.taskmanager
     local started=false

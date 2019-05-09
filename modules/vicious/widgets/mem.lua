@@ -24,12 +24,18 @@ local function worker(format)
     -- Get MEM info
     for line in io.lines("/proc/meminfo") do
         for k, v in string.gmatch(line, "([%a]+):[%s]+([%d]+).+") do
-            if     k == "MemTotal"  then _mem.total = math.floor(v/1024)
-            elseif k == "MemFree"   then _mem.buf.f = math.floor(v/1024)
-            elseif k == "Buffers"   then _mem.buf.b = math.floor(v/1024)
-            elseif k == "Cached"    then _mem.buf.c = math.floor(v/1024)
-            elseif k == "SwapTotal" then _mem.swp.t = math.floor(v/1024)
-            elseif k == "SwapFree"  then _mem.swp.f = math.floor(v/1024)
+            if     k == "MemTotal"  then _mem.total = math.floor(v/1024/1024*10)/10
+            elseif k == "MemFree"   then _mem.buf.f = math.floor(v/1024/1024*10)/10
+            elseif k == "Buffers"   then _mem.buf.b = math.floor(v/1024/1024*10)/10
+            elseif k == "Cached"    then _mem.buf.c = math.floor(v/1024/1024*10)/10
+            elseif k == "SwapTotal" then _mem.swp.t = math.floor(v/1024/1024*10)/10
+            elseif k == "SwapFree"  then _mem.swp.f = math.floor(v/1024/1024*10)/10
+            --if     k == "MemTotal"  then _mem.total = v/1024/1024
+            --elseif k == "MemFree"   then _mem.buf.f = v/1024/1024
+            --elseif k == "Buffers"   then _mem.buf.b = v/1024/1024
+            --elseif k == "Cached"    then _mem.buf.c = v/1024/1024
+            --elseif k == "SwapTotal" then _mem.swp.t = v/1024/1024
+            --elseif k == "SwapFree"  then _mem.swp.f = v/1024/1024
             end
         end
     end
@@ -43,7 +49,8 @@ local function worker(format)
     _mem.swp.inuse = _mem.swp.t - _mem.swp.f
     _mem.swp.usep  = math.floor(_mem.swp.inuse / _mem.swp.t * 100)
 
-    return {_mem.usep,     _mem.inuse,     _mem.total, _mem.free,
+    --return {_mem.usep, string.format("%f", _mem.inuse),     _mem.total, _mem.free,
+    return {_mem.usep, _mem.inuse,     _mem.total, _mem.free,
             _mem.swp.usep, _mem.swp.inuse, _mem.swp.t, _mem.swp.f,
             _mem.bcuse }
 end
