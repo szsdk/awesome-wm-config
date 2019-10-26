@@ -6,6 +6,8 @@ package.path = config_path .. "/modules/?.lua;" .. package.path
 package.path = config_path .. "/modules/?/init.lua;" .. package.path
 package.path = config_path .. "/lain/?.lua;" .. package.path
 
+package.path = '/home/sz/.luarocks/share/lua/5.3/?.lua;' .. package.path
+
 local lain = require("lain")
 local math = require("math")
 local gears = require("gears")
@@ -273,7 +275,7 @@ end
 
 --{{
 local tools = {
-    terminal = "gnome-terminal",
+    terminal = "termite",
     system = {
         filemanager = "pcmanfm",
         taskmanager = "lxtask",
@@ -1651,6 +1653,58 @@ do
     ))
 end
 
+
+--customization.widgets.batsz = awful.widget.progressbar()
+customization.widgets.batsz= wibox.widget.textbox()
+customization.widgets.batsz.last_perc = nil
+customization.widgets.batsz.warning_threshold = 10
+customization.widgets.batsz.instance = "BAT0"
+--customization.widgets.batsz:set_width(8)
+--customization.widgets.batsz:set_height(10)
+--customization.widgets.batsz:set_vertical(true)
+--customization.widgets.batsz:set_background_color("#494B4F")
+--customization.widgets.batsz:set_border_color(nil)
+--customization.widgets.batsz:set_color({
+    --type = "linear", from = { 0, 0 }, to = { 0, 10 },
+    --stops = {{ 0, "#AECF96" }, { 0.5, "#88A175" }, { 1, "#FF5656" }}
+--})
+vicious.register(customization.widgets.batsz, vicious.widgets.bat, 
+    function (bat, args)
+
+        local perc = args[2]
+
+        -- "perc>0" checks for "no battery" (e.g., desktop computer).
+        if customization.option.low_battery_notification_p and perc > 0 and perc <= bat.warning_threshold then
+            if (not bat.last_perc) or (perc < bat.last_perc) then
+                -- discharging
+                naughty.notify({
+                    preset = naughty.config.presets.critical,
+                    title = "Low battery: " .. perc .. "%.",
+                    text = "Please connect an AC adapter.",
+                    timeout = 60
+                })
+            elseif perc > bat.last_perc then
+                -- charging
+                naughty.notify({
+                    preset = naughty.config.presets.low,
+                    title = "Battery is charging.",
+                    text = "Current: " .. perc .. "%; warning threshold: " .. bat.warning_threshold .. "%.",
+                    timeout = 5
+                })
+            end
+            bat.last_perc = perc
+        else
+            bat.last_perc = nil
+        end
+        if perc <= 15 then
+            return '<span fgcolor="red">🔋<b>' .. perc .. '%</b> </span>'
+        end
+        return '<span fgcolor="light green">🔋' .. perc .. '% </span>'
+    end, 61, customization.widgets.batsz.instance)
+--do
+--end
+
+
 customization.widgets.bat = awful.widget.progressbar()
 customization.widgets.bat.last_perc = nil
 customization.widgets.bat.warning_threshold = 10
@@ -1666,7 +1720,9 @@ customization.widgets.bat:set_color({
 })
 vicious.register(customization.widgets.bat, vicious.widgets.bat, 
     function (bat, args)
+
         local perc = args[2]
+
         -- "perc>0" checks for "no battery" (e.g., desktop computer).
         if customization.option.low_battery_notification_p and perc > 0 and perc <= bat.warning_threshold then
             if (not bat.last_perc) or (perc < bat.last_perc) then
@@ -1747,7 +1803,21 @@ end
 
 customization.widgets.volume = wibox.widget.textbox()
 vicious.register(customization.widgets.volume, vicious.widgets.volume,
-  "<span fgcolor='cyan'>$1%$2</span>", 1, "Master")
+function(volume, args)
+    local vol = args[1]
+    local mute = args[2]
+    if mute == "♩" then 
+        return "<span fgcolor='cyan'>🔇" .. vol .. "% </span>"
+    end
+    if vol < 30 then
+        return "<span fgcolor='cyan'>🔈" .. vol .. "% </span>"
+    end
+    if vol < 60 then
+        return "<span fgcolor='cyan'>🔉" .. vol .. "% </span>"
+    end
+    return "<span fgcolor='cyan'>🔊" .. vol .. "% </span>"
+end, 1, "Master")
+  --"<span fgcolor='cyan'>$1%$2</span>", 1, "Master")
 do
     local prog="pavucontrol"
     local started=false
@@ -1944,8 +2014,8 @@ function(s)
             wibox.widget.systray(),
             customization.widgets.cpuusage,
             customization.widgets.memusage,
-            customization.widgets.bat,
-            customization.widgets.mpdstatus,
+            customization.widgets.batsz,
+            --customization.widgets.mpdstatus,
             customization.widgets.volume,
             customization.widgets.date,
             customization.widgets.layoutbox[s],
