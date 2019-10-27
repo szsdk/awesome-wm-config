@@ -86,7 +86,7 @@ customization.default.property = {
 }
 
 customization.default.compmgr = 'xcompmgr'
-customization.default.compmgr_args = '-f -c -s'
+customization.default.compmgr_args = ''
 customization.default.wallpaper_change_interval = 15
 
 customization.option.wallpaper_change_p = true
@@ -336,6 +336,7 @@ local layouts =
     awful.layout.suit.tile.left,
     awful.layout.suit.floating,
     awful.layout.suit.fair,
+    awful.layout.suit.max,
     awful.layout.suit.max.fullscreen,
     awful.layout.suit.magnifier,
 }
@@ -1807,7 +1808,7 @@ function(volume, args)
     local vol = args[1]
     local mute = args[2]
     if mute == "♩" then 
-        return "<span fgcolor='cyan'>🔇" .. vol .. "% </span>"
+        return "<span fgcolor='#333333'>🔇" .. vol .. "% </span>"
     end
     if vol < 30 then
         return "<span fgcolor='cyan'>🔈" .. vol .. "% </span>"
