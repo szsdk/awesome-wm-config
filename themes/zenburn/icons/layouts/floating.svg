@@ -13,11 +13,11 @@
    height="16mm"
    viewBox="0 0 16 16"
    version="1.1"
-   id="svg5501"
+   id="svg3648"
    inkscape:version="0.92.4 5da689c313, 2019-01-14"
-   sodipodi:docname="max.svg">
+   sodipodi:docname="floating.svg">
   <defs
-     id="defs5495" />
+     id="defs3642" />
   <sodipodi:namedview
      id="base"
      pagecolor="#ffffff"
@@ -25,9 +25,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="2.8"
-     inkscape:cx="-0.19215371"
-     inkscape:cy="3.7994974"
+     inkscape:zoom="1.979899"
+     inkscape:cx="-16.823053"
+     inkscape:cy="-79.508812"
      inkscape:document-units="mm"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -41,7 +41,7 @@
      inkscape:window-y="0"
      inkscape:window-maximized="1" />
   <metadata
-     id="metadata5498">
+     id="metadata3645">
     <rdf:RDF>
       <cc:Work
          rdf:about="">
@@ -56,14 +56,24 @@
      inkscape:label="Layer 1"
      inkscape:groupmode="layer"
      id="layer1"
-     transform="translate(-41.892857,-73.553571)">
-    <rect
-       style="opacity:1;fill:#888888;fill-opacity:1;stroke:#ffffff;stroke-width:0.5;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
-       id="rect815-3-6"
-       width="12.24"
-       height="9.1800003"
-       x="43.772854"
-       y="76.96357"
-       ry="0" />
+     transform="translate(249.90476,-66.75)">
+    <g
+       id="g3119"
+       transform="translate(-268.36309,47.624999)">
+      <rect
+         ry="0"
+         y="20.968014"
+         x="23.307055"
+         height="7.8258471"
+         width="9.5894737"
+         id="rect815-3"
+         style="opacity:1;fill:#888888;fill-opacity:1;stroke:#ffffff;stroke-width:0.5;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+      <path
+         sodipodi:nodetypes="ccccccc"
+         inkscape:connector-curvature="0"
+         id="path855"
+         d="m 19.667362,22.786845 h 2.116666 v 7.40833 h 9.854057 v 3.43959 H 19.667362 Z"
+         style="fill:#eaeaea;fill-opacity:0.76348548;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+    </g>
   </g>
 </svg>

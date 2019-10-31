@@ -1846,6 +1846,12 @@ do
     ))
 end
 
+customization.widgets.tal = wibox.widget {
+    customization.widgets.volume,
+    customization.widgets.volume,
+    layout  = wibox.layout.align.horizontal
+}
+
 customization.widgets.date = wibox.widget.textbox()
 vicious.register(customization.widgets.date, vicious.widgets.date, "%a %x %r %Z", 1)
 do
@@ -2018,6 +2024,7 @@ function(s)
             customization.widgets.batsz,
             --customization.widgets.mpdstatus,
             customization.widgets.volume,
+            --customization.widgets.tal,
             customization.widgets.date,
             customization.widgets.layoutbox[s],
         },

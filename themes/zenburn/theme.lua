@@ -90,24 +90,25 @@ theme.taglist_squares_unsel = theme.confdir .. "/icons/taglist/unsel.png"
 -- }}}
 
 -- {{{ Misc icons
-theme.awesome_icon           = theme.confdir .. "/icons/awesome.png"
+theme.awesome_icon           = theme.confdir .. "/icons/Awesome_logo.svg"
 --theme.menu_submenu_icon      = "/usr/share/awesome/themes/default/submenu.png"
 --theme.tasklist_floating_icon = "/usr/share/awesome/themes/default/tasklist/floatingw.png"
 -- }}}
 
 -- {{{ Layout icons
 theme.layout_tile       = theme.confdir .. "/icons/layouts/tile.png"
-theme.layout_tileleft   = theme.confdir .. "/icons/layouts/tileleft.png"
+theme.layout_tileleft   = theme.confdir .. "/icons/layouts/tileleft.svg"
 theme.layout_tilebottom = theme.confdir .. "/icons/layouts/tilebottom.png"
 theme.layout_tiletop    = theme.confdir .. "/icons/layouts/tiletop.png"
-theme.layout_fairv      = theme.confdir .. "/icons/layouts/fairv.png"
+theme.layout_fairv      = theme.confdir .. "/icons/layouts/fairv.svg"
 theme.layout_fairh      = theme.confdir .. "/icons/layouts/fairh.png"
 theme.layout_spiral     = theme.confdir .. "/icons/layouts/spiral.png"
 theme.layout_dwindle    = theme.confdir .. "/icons/layouts/dwindle.png"
 theme.layout_max        = theme.confdir .. "/icons/layouts/max.svg"
-theme.layout_fullscreen = theme.confdir .. "/icons/layouts/fullscreen.png"
-theme.layout_magnifier  = theme.confdir .. "/icons/layouts/magnifier.png"
-theme.layout_floating   = theme.confdir .. "/icons/layouts/floating.png"
+theme.layout_fullscreen = theme.confdir .. "/icons/layouts/fullscreen.svg"
+theme.layout_magnifier  = theme.confdir .. "/icons/layouts/magnifier.svg"
+theme.layout_floating   = theme.confdir .. "/icons/layouts/floating.svg"
+theme.layout_centerwork = theme.confdir .. "/icons/layouts/centerwork.svg"
 -- }}}
 
 -- {{{ Widget icons
