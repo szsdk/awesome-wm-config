@@ -21,8 +21,8 @@ theme.font      = "Sarasa UI SC 13"
 theme.fg_normal = "#DCDCCC"
 theme.fg_focus  = "#F0CC67"
 theme.fg_urgent = "#CC9393"
-theme.bg_normal = "#3F3F3F85"
-theme.bg_focus  = "#1E232085"
+theme.bg_normal = "#3F3F3FBD"
+theme.bg_focus  = "#1E232090"
 theme.bg_urgent = theme.bg_normal
 --[[
 theme.bg_normal = "#272C30"
