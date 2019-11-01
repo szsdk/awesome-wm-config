@@ -6,7 +6,6 @@ package.path = config_path .. "/modules/?.lua;" .. package.path
 package.path = config_path .. "/modules/?/init.lua;" .. package.path
 package.path = config_path .. "/lain/?.lua;" .. package.path
 
-package.path = '/home/sz/.luarocks/share/lua/5.3/?.lua;' .. package.path
 
 local lain = require("lain")
 local math = require("math")
@@ -71,7 +70,7 @@ customization.config.version = "4.0.13"
 customization.config.help_url = "https://github.com/pw4ever/awesome-wm-config/tree/" .. customization.config.version
 
 customization.default.property = {
-    layout = awful.layout.suit.floating,
+    layout = lain.layout.centerwork,
     mwfact = 0.5,
     nmaster = 1,
     ncol = 1,
@@ -332,8 +331,8 @@ modkey = "Mod4"
 -- Table of layouts to cover with awful.layout.inc, order matters.
 local layouts =
 {
-    lain.layout.centerwork,
     awful.layout.suit.tile.left,
+    lain.layout.centerwork,
     awful.layout.suit.floating,
     awful.layout.suit.fair,
     awful.layout.suit.max,
@@ -1656,7 +1655,7 @@ end
 
 
 local mybat = {}
-mybat.icon = wibox.widget.imagebox('/home/sz/.config/awesome/themes/zenburn/icons/battery_0.svg')
+mybat.icon = wibox.widget.imagebox('')
 mybat.text = wibox.widget.textbox()
 customization.widgets.batsz = wibox.widget{
     mybat.icon,
@@ -1704,22 +1703,33 @@ vicious.register(customization.widgets.batsz, vicious.widgets.bat,
         else
             bat.last_perc = nil
         end
+        local theme = beautiful.get()
         if stat == "+" then
-            mybat.icon.image = '/home/sz/.config/awesome/themes/zenburn/icons/battery_charging.svg'
+            mybat.icon.image = theme.widget_battery["charging"]
             mybat.text.markup = "<span fgcolor='light blue'>" .. perc .. "% </span>"
             return
         end
         if perc <= 10 then
-            mybat.icon.image = '/home/sz/.config/awesome/themes/zenburn/icons/battery_0.svg'
+        mybat.icon.image = theme.widget_battery[0]
             mybat.text.markup = "<span fgcolor='red'>" .. perc .. "% </span>"
             return
         end
         if perc <= 20 then
-            mybat.icon.image = '/home/sz/.config/awesome/themes/zenburn/icons/battery_1.svg'
+        mybat.icon.image = theme.widget_battery[1]
             mybat.text.markup = "<span fgcolor='red'>" .. perc .. "% </span>"
             return
         end
-        mybat.icon.image = '/home/sz/.config/awesome/themes/zenburn/icons/battery_4.svg'
+        if perc <= 40 then
+        mybat.icon.image = theme.widget_battery[2]
+            mybat.text.markup = "<span fgcolor='light green'>" .. perc .. "% </span>"
+            return
+        end
+        if perc <= 70 then
+        mybat.icon.image = theme.widget_battery[3]
+            mybat.text.markup = "<span fgcolor='light green'>" .. perc .. "% </span>"
+            return
+        end
+        mybat.icon.image = theme.widget_battery[4]
         mybat.text.markup = "<span fgcolor='light green'>" .. perc .. "% </span>"
         return
     end, 61, customization.widgets.batsz.instance)
@@ -1842,13 +1852,11 @@ customization.widgets.volume = wibox.widget.textbox()
   --"<span fgcolor='cyan'>$1%$2</span>", 1, "Master")
 
 local myvol = {}
-myvol.icon = wibox.widget.imagebox('/home/sz/.config/awesome/themes/zenburn/icons/Speaker_0.svg')
+myvol.icon = wibox.widget.imagebox('')
 myvol.text = wibox.widget.textbox()
 customization.widgets.tal = wibox.widget{
     myvol.icon,
     myvol.text,
-    --customization.widgets.volume,
-    --customization.widgets.volume,
     layout  = wibox.layout.align.horizontal
 }
 customization.widgets.tal.set_markup = function(data)
@@ -1862,28 +1870,28 @@ vicious.register(customization.widgets.tal, vicious.widgets.volume,
 function(volume, args)
     local vol = args[1]
     local mute = args[2]
+
+    local theme = beautiful.get()
     if mute == "♩" then 
-        myvol.icon.image = '/home/sz/.config/awesome/themes/zenburn/icons/Speaker_No.svg'
+        myvol.icon.image = theme.widget_speaker.no
         myvol.text.markup = "<span fgcolor='#333333'>" .. vol .. "% </span>"
         return
     end
     if vol < 30 then
-        myvol.icon.image = '/home/sz/.config/awesome/themes/zenburn/icons/Speaker_0.svg'
+        myvol.icon.image = theme.widget_speaker[0]
         myvol.text.markup = "<span fgcolor='cyan'>" .. vol .. "% </span>"
         return
     end
     if vol < 60 then
-        myvol.icon.image = '/home/sz/.config/awesome/themes/zenburn/icons/Speaker_1.svg'
+        myvol.icon.image = theme.widget_speaker[1]
         myvol.text.markup = "<span fgcolor='cyan'>" .. vol .. "% </span>"
         return 
     end
 
-    myvol.icon.image = '/home/sz/.config/awesome/themes/zenburn/icons/Speaker_2.svg'
+        myvol.icon.image = theme.widget_speaker[2]
     myvol.text.markup = "<span fgcolor='cyan'>" .. vol .. "% </span>"
     return
-    --return "<span fgcolor='cyan'>🔊" .. vol .. "% </span>"
 end, 1, "Master")
-  --"<span fgcolor='cyan'>$1%$2</span>", 1, "Master")
 do
     local prog="pavucontrol"
     local started=false

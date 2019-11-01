@@ -126,6 +126,21 @@ theme.widget_date   = theme.confdir .. "/icons/time.png"
 theme.widget_crypto = theme.confdir .. "/icons/crypto.png"
 theme.widget_sep    = theme.confdir .. "/icons/separator.png"
 -- }}}
+theme.widget_battery= {
+    charging = theme.confdir .. "/icons/battery_charging.svg",
+    [0] = theme.confdir .. "/icons/battery_0.svg",
+    [1] = theme.confdir .. "/icons/battery_1.svg",
+    [2] = theme.confdir .. "/icons/battery_2.svg",
+    [3] = theme.confdir .. "/icons/battery_3.svg",
+    [4] = theme.confdir .. "/icons/battery_4.svg",
+}
+
+theme.widget_speaker= {
+    no = theme.confdir .. "/icons/speaker_no.svg",
+    [0] = theme.confdir .. "/icons/speaker_0.svg",
+    [1] = theme.confdir .. "/icons/speaker_1.svg",
+    [2] = theme.confdir .. "/icons/speaker_2.svg",
+}
 
 -- {{{ Titlebar icons
 theme.titlebar_close_button_focus  = theme.confdir .. "/icons/titlebar/close_focus.png"
