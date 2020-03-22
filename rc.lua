@@ -2442,6 +2442,13 @@ uniarg:key_repeat({ modkey, "Shift"   }, "Tab", customization.func.client_focus_
 
 awful.key({ modkey,           }, "y", customization.func.client_focus_urgent),
 
+--- jump to a window
+awful.key({ modkey,           }, "w", function()
+    awful.spawn.easy_async("rofi -show window", function(stdout, stderr, reason, exit_code)
+        customization.func.client_focus_urgent()
+    end)
+end),
+
 --- swap order/select master
 
 uniarg:key_repeat({ modkey, "Shift"   }, "j", customization.func.client_swap_next),

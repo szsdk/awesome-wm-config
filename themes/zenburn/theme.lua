@@ -15,7 +15,7 @@ theme.confdir       = awful.util.getdir("config") .. "/themes/" .. theme.name
 
 
 -- {{{ Styles
-theme.font      = "Sarasa UI SC 13"
+theme.font      = "Sarasa term SC 14"
 
 -- {{{ Colors
 theme.fg_normal = "#DCDCCC"
