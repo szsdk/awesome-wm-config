@@ -2329,7 +2329,7 @@ awful.key({modkey}, "F2", function()
 end),
 
 awful.key({modkey}, "r", function()
-    awful.util.spawn("rofi -show run")
+    awful.util.spawn("zsh -c 'source ~/.zshrc; rofi -show drun'")
     --awful.prompt.run(
     --{prompt = "Run: "},
     --customization.widgets.promptbox[awful.screen.focused()].widget,
