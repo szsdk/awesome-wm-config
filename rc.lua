@@ -274,7 +274,7 @@ end
 
 --{{
 local tools = {
-    terminal = "termite",
+    terminal = "st",
     system = {
         filemanager = "pcmanfm",
         taskmanager = "lxtask",
@@ -332,6 +332,7 @@ modkey = "Mod4"
 local layouts =
 {
     awful.layout.suit.tile.left,
+    awful.layout.suit.tile.bottom,
     lain.layout.centerwork,
     awful.layout.suit.floating,
     awful.layout.suit.fair,
