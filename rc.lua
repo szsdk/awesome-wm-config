@@ -2257,7 +2257,7 @@ end),
 --- restart/quit/info
 
 awful.key({ modkey, "Control" }, "r", awesome.restart),
-
+awful.key({ modkey}, "q", function () awful.layout.set(lain.layout.centerwork) end),
 awful.key({ modkey, "Control", "Shift" }, "r", customization.orig.restart),
 
 awful.key({ modkey, "Shift"   }, "q", awesome.quit),
@@ -2445,9 +2445,13 @@ awful.key({ modkey,           }, "y", customization.func.client_focus_urgent),
 
 --- jump to a window
 awful.key({ modkey,           }, "w", function()
-    awful.spawn.easy_async("rofi -show window", function(stdout, stderr, reason, exit_code)
+    awful.spawn.easy_async("rofi -combi-modi window,drun -show combi -modi combi", function(stdout, stderr, reason, exit_code)
         customization.func.client_focus_urgent()
     end)
+end),
+
+awful.key({ modkey,           }, "e", function()
+    awful.util.spawn("zsh -c 'source ~/.zshrc; st -c st_float -e sc'")
 end),
 
 --- swap order/select master
@@ -2972,7 +2976,14 @@ awful.rules.rules = {
             size_hints_honor = false,
         }
     },
-
+    { 
+        rule = { class = "st_float" },
+        properties = { 
+            floating = true,
+            opacity = 0.9,
+            placement = awful.placement.centered,
+        } 
+    },
     { 
         rule = { class = "MPlayer" },
         properties = { 
